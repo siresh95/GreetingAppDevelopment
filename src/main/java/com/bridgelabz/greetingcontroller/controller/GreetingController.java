@@ -23,6 +23,7 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 
+
     @GetMapping("greeting/{name}")
     public Greeting greetings(@PathVariable String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
@@ -61,5 +62,9 @@ public class GreetingController {
     @GetMapping("/greetinglist")
     public List<Greeting> getAllGreetings() {
         return greetingService.getAllGreetings();
+    }
+    @PutMapping("/editdata")
+    public Greeting editGreeting(Greeting greeting) {
+        return greetingService.editGreeting(greeting);
     }
 }
