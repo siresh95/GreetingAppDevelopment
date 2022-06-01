@@ -1,6 +1,7 @@
 package com.bridgelabz.greetingcontroller.controller;
 
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.bridgelabz.greetingcontroller.model.Greeting;
@@ -9,7 +10,6 @@ import com.bridgelabz.greetingcontroller.services.IGreetingService;
 import com.bridgelabz.greetingcontroller.user.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 
 @RestController
@@ -22,7 +22,6 @@ public class GreetingController {
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
-
 
     @GetMapping("greeting/{name}")
     public Greeting greetings(@PathVariable String name) {
@@ -58,5 +57,9 @@ public class GreetingController {
     @GetMapping("/greetingdata/{id}")
     public Greeting findGreetingById(@PathVariable long id) {
         return greetingService.findGreetingById(id);
+    }
+    @GetMapping("/greetinglist")
+    public List<Greeting> getAllGreetings() {
+        return greetingService.getAllGreetings();
     }
 }
