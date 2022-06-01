@@ -17,7 +17,6 @@ public class GreetingController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-
     @GetMapping(value = { "/greeting", "/greeting/", "/greeting/home" })
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
@@ -66,5 +65,9 @@ public class GreetingController {
     @PutMapping("/editdata")
     public Greeting editGreeting(Greeting greeting) {
         return greetingService.editGreeting(greeting);
+    }
+    @DeleteMapping("/delete/{id}")
+    public String deleteMessageById(@PathVariable long id) {
+        return this.greetingService.deleteMessageById(id);
     }
 }

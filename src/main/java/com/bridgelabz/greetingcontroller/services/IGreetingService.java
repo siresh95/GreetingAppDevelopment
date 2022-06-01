@@ -7,7 +7,6 @@ import com.bridgelabz.greetingcontroller.user.UserDto;
 import java.util.List;
 
 
-
 public interface IGreetingService {
     Greeting greetingMessage();
     String greetingMessageByName(UserDto userDto);
@@ -15,4 +14,5 @@ public interface IGreetingService {
     Greeting findGreetingById(long id);
     List<Greeting> getAllGreetings();
     Greeting editGreeting(Greeting greeting);
+    String deleteMessageById(long id);
 }
